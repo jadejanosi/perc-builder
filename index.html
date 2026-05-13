@@ -1021,13 +1021,17 @@ Make ALL 6 pillars. Make everything specific to her niche, audience, and pain po
       })
     });
     const data = await res.json();
+    if (data.error) {
+      throw new Error('API error: ' + JSON.stringify(data.error));
+    }
     const text = (data.content?.[0]?.text||'').replace(/```json|```/g,'').trim();
+    if (!text) throw new Error('Empty response from API');
     resultData = JSON.parse(text);
     clearInterval(genInterval);
     renderResult(resultData);
   } catch(e) {
     clearInterval(genInterval);
-    alert('Something went wrong. Please try again.');
+    alert('Error: ' + e.message);
     showScreen('quiz');
   }
 }

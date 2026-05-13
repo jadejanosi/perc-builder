@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jade Janosi — PERC Product Builder</title>
+<meta name="description" content="Answer 6 questions and get a complete low-ticket digital product idea built on the PERC method — including your 6-pillar framework, upsell, and membership offer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F2F7F7;
+    --dark: #0D2B2B;
+    --brown: #1A3A3A;
+    --accent: #2A7C7C;
+    --accent-light: #E0F0F0;
+    --accent-dark: #1A5C5C;
+    --mid: #456868;
+    --muted: #7AACAC;
+    --border: #C8E0E0;
+    --white: #FFFFFF;
+    --card-shadow: 0 1px 3px rgba(13,43,43,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--brown);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.01em;
+  }
+
+  .logo span { color: var(--accent); }
+
+  .progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .progress-track {
+    width: 140px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 999px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  .progress-label {
+    font-size: 12px;
+    color: var(--muted);
+    min-width: 36px;
+  }
+
+  /* ── Main layout ── */
+  .main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ── Screens ── */
+  .screen { display: none; animation: fadeUp 0.3s ease; }
+  .screen.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Welcome ── */
+  .welcome-hero {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+  }
+
+  .welcome-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--accent-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 28px;
+  }
+
+  .welcome-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .welcome-title em { font-style: italic; color: var(--accent); }
+
+  .welcome-sub {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.7;
+    max-width: 400px;
+    margin: 0 auto 28px;
+    font-weight: 300;
+  }
+
+  .welcome-stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--dark);
+    display: block;
+  }
+
+  .stat-lbl {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    border-radius: 999px;
+    padding: 14px 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); }
+  .btn-primary:disabled { background: var(--muted); cursor: not-allowed; transform: none; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--mid);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 12px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-secondary:hover { border-color: var(--mid); color: var(--brown); }
+
+  .btn-dark {
+    background: var(--dark);
+    color: var(--white);
+    border: none;
+    border-radius: 999px;
+    padding: 13px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-dark:hover { background: var(--brown); transform: translateY(-1px); }
+
+  /* ── Quiz ── */
+  .step-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 6px;
+    line-height: 1.25;
+  }
+
+  .step-hint {
+    font-size: 14px;
+    color: var(--mid);
+    margin-bottom: 24px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .multi-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .chip {
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: 1.5px solid var(--border);
+    background: var(--white);
+    color: var(--mid);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.3;
+  }
+
+  .chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+  .chip.sel { background: var(--accent); border-color: var(--accent); color: var(--white); font-weight: 500; }
+
+  .other-input {
+    width: 100%;
+    border: 1.5px solid var(--border);
+    border-radius: 999px;
+    padding: 11px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--brown);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.15s;
+    margin-top: 6px;
+  }
+
+  .other-input:focus { border-color: var(--accent); }
+  .other-input::placeholder { color: var(--muted); }
+
+  .nav-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  /* ── Generating ── */
+  .gen-screen {
+    text-align: center;
+    padding: 5rem 1rem;
+  }
+
+  .spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid var(--accent-light);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 20px;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .gen-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+
+  .gen-sub { font-size: 14px; color: var(--mid); font-weight: 300; }
+
+  .gen-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 28px;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .gen-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    transition: color 0.3s;
+  }
+
+  .gen-step.done { color: var(--accent); }
+
+  .gen-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+    transition: background 0.3s;
+  }
+
+  .gen-step.done .gen-dot { background: var(--accent); }
+  .gen-step.active .gen-dot { background: var(--accent); animation: pulse 1s ease infinite; }
+  .gen-step.active { color: var(--brown); }
+
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.4)} }
+
+  /* ── Result ── */
+  .r-hero {
+    text-align: center;
+    padding: 2rem 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+
+  .r-badge {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    border-radius: 999px;
+    padding: 4px 14px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .r-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .r-tagline {
+    font-size: 15px;
+    color: var(--mid);
+    font-style: italic;
+    margin-bottom: 12px;
+    font-weight: 300;
+  }
+
+  .r-price-badge {
+    display: inline-block;
+    background: var(--dark);
+    color: var(--white);
+    border-radius: 999px;
+    padding: 6px 20px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    box-shadow: var(--card-shadow);
+  }
+
+  .card-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .transform-statement {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--dark);
+    line-height: 1.6;
+    padding: 14px 18px;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-light);
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 14px;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .mini-card {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .mini-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+
+  .mini-text {
+    font-size: 13px;
+    color: var(--brown);
+    line-height: 1.5;
+  }
+
+  /* Pillars */
+  .pillar-item {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    background: var(--white);
+  }
+
+  .pillar-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+
+  .pillar-head:hover { background: var(--cream); }
+
+  .pillar-num {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+
+  .pillar-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark);
+    flex: 1;
+  }
+
+  .pillar-chevron {
+    color: var(--muted);
+    transition: transform 0.2s;
+    font-size: 16px;
+  }
+
+  .pillar-chevron.open { transform: rotate(180deg); }
+
+  .pillar-body {
+    display: none;
+    padding: 4px 16px 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .pillar-body.open { display: block; }
+
+  .perc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin: 12px 0;
+  }
+
+  .perc-cell {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+
+  .perc-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 1px;
+  }
+
+  .perc-lbl {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+
+  .perc-text {
+    font-size: 12px;
+    color: var(--brown);
+    line-height: 1.5;
+  }
+
+  .quick-win-box {
+    background: var(--accent-light);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 10px 0;
+  }
+
+  .qw-lbl {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-dark);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  .qw-text {
+    font-size: 13px;
+    color: var(--brown);
+    line-height: 1.6;
+  }
+
+  .pillar-section-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 12px 0 5px;
+  }
+
+  .pillar-body-text {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+
+  .resource-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--brown);
+    padding: 4px 0;
+    line-height: 1.5;
+  }
+
+  .resource-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  /* Offer stack */
+  .offer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .offer-card {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--border);
+  }
+
+  .offer-type {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .offer-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .offer-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 7px;
+    line-height: 1.4;
+  }
+
+  .offer-desc {
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .standout-card {
+    background: var(--dark);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+  }
+
+  .standout-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 8px;
+  }
+
+  .standout-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.6;
+  }
+
+  .action-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    padding-bottom: 8px;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 480px) {
+    .welcome-title { font-size: 28px; }
+    .step-title { font-size: 24px; }
+    .two-col { grid-template-columns: 1fr; }
+    .offer-grid { grid-template-columns: 1fr; }
+    .perc-grid { grid-template-columns: 1fr 1fr; }
+    .welcome-stats { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">Jade <span>Janosi</span></div>
+  <div class="progress-wrap" id="progress-wrap" style="display:none">
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    <span class="progress-label" id="progress-label">1 / 6</span>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- WELCOME -->
+  <div id="screen-welcome" class="screen active">
+    <div class="welcome-hero">
+      <div class="welcome-icon">✨</div>
+      <h1 class="welcome-title">Find your perfect<br><em>low-ticket product</em></h1>
+      <p class="welcome-sub">Answer 6 questions and get a complete product plan built on the PERC method — designed for women who want to make money without the overwhelm.</p>
+      <div class="welcome-stats">
+        <div class="stat-item"><span class="stat-num">6</span><span class="stat-lbl">Questions</span></div>
+        <div class="stat-item"><span class="stat-num">6</span><span class="stat-lbl">Pillars</span></div>
+        <div class="stat-item"><span class="stat-num">3 min</span><span class="stat-lbl">Total time</span></div>
+      </div>
+      <button class="btn-primary" onclick="startQuiz()">Let's build it →</button>
+      <div style="font-size:12px;color:var(--muted);margin-top:12px">No experience needed. No fluff. Just your idea.</div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="screen-quiz" class="screen">
+    <div id="quiz-body"></div>
+    <div class="nav-row" id="quiz-nav">
+      <button class="btn-secondary" id="back-btn" onclick="goBack()" style="display:none">← Back</button>
+      <button class="btn-primary" id="next-btn" onclick="goNext()" disabled>Continue →</button>
+    </div>
+  </div>
+
+  <!-- GENERATING -->
+  <div id="screen-generating" class="screen">
+    <div class="gen-screen">
+      <div class="spinner"></div>
+      <div class="gen-title" id="gen-title">Building your product idea...</div>
+      <div class="gen-sub">Applying the PERC method to your answers</div>
+      <div class="gen-steps">
+        <div class="gen-step" id="gs-0"><div class="gen-dot"></div>Analyzing your niche + audience</div>
+        <div class="gen-step" id="gs-1"><div class="gen-dot"></div>Designing your transformation</div>
+        <div class="gen-step" id="gs-2"><div class="gen-dot"></div>Building your 6-pillar framework</div>
+        <div class="gen-step" id="gs-3"><div class="gen-dot"></div>Creating your offer stack</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="screen-result" class="screen">
+    <div id="result-body"></div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  &copy; Jade Janosi &mdash; Built with the PERC Method
+</footer>
+
+<script>
+const STEPS = [
+  {
+    id:"niche",
+    q:"What's your niche?",
+    hint:"The topic or world you want to build your product in",
+    multi:true,
+    opts:["Business & income online","Productivity & time management","Health & wellness","Parenting & family life","Mental health & mindset","Home organization","Relationships & marriage","Faith & spirituality","Beauty & self-care","Food & nutrition","Fitness & movement","Career & personal growth","Social media & content creation","AI & tech tools"],
+    other:"My own niche"
+  },
+  {
+    id:"demo",
+    q:"Who is your ideal buyer?",
+    hint:"Pick everyone who describes your perfect customer",
+    multi:true,
+    opts:["Moms with young kids","Moms with teens","Working moms","Stay-at-home moms","Single moms","Women building side income","Women with no online experience","Women who feel overwhelmed","Women who want time freedom","Anyone wanting to earn online","Beginners with no following","People juggling too much"],
+    other:"My specific audience"
+  },
+  {
+    id:"pain",
+    q:"What keeps them up at night?",
+    hint:"Their biggest frustrations — pick all that apply",
+    multi:true,
+    opts:["No time for anything","Overwhelmed and can't focus","Don't know where to start","Tried things that didn't work","Not enough money coming in","Feeling stuck and unfulfilled","Can't stay consistent","Doing everything alone","Scared to put themselves out there","Information overload","No support system","Comparing themselves to others"],
+    other:"Another pain point"
+  },
+  {
+    id:"transform",
+    q:"What transformation do you deliver?",
+    hint:"The before → after your product creates",
+    multi:false,
+    opts:["Save time and get more done","Make their first money online","Build a consistent income stream","Feel calm, clear, and in control","Get organized and stay that way","Build confidence to start","Create a system that runs itself","Go from stuck to taking action","Turn their knowledge into income","Simplify their life significantly"],
+    other:"My own transformation"
+  },
+  {
+    id:"format",
+    q:"What format excites you to create?",
+    hint:"What you'd actually enjoy making",
+    multi:true,
+    opts:["PDF guide or playbook","Checklist or template pack","Mini video course","Email-based course","Notion or Google Doc system","Prompt pack or swipe file","Workbook with exercises","Audio training"],
+    other:null
+  },
+  {
+    id:"price",
+    q:"What price point feels right?",
+    hint:"For your main low-ticket product",
+    multi:false,
+    opts:["$7–$17 (impulse buy)","$17–$27 (sweet spot)","$27–$47 (premium low-ticket)","$47–$67 (high-value low-ticket)"],
+    other:null
+  }
+];
+
+let currentStep = 0;
+let answers = {};
+let otherVals = {};
+let resultData = null;
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-'+id).classList.add('active');
+}
+
+function startQuiz() {
+  currentStep = 0;
+  answers = {}; otherVals = {};
+  document.getElementById('progress-wrap').style.display = 'flex';
+  showScreen('quiz');
+  renderStep();
+}
+
+function renderStep() {
+  const s = STEPS[currentStep];
+  const pct = Math.round(((currentStep+1)/STEPS.length)*100);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = (currentStep+1)+' / '+STEPS.length;
+
+  const sel = answers[s.id] || (s.multi ? [] : null);
+
+  const chipsHtml = s.opts.map(o => {
+    const isSel = s.multi ? (sel||[]).includes(o) : sel===o;
+    return `<button class="chip${isSel?' sel':''}" onclick="pickChip('${s.id}','${o.replace(/'/g,"\\'")}',${s.multi})">${o}</button>`;
+  }).join('');
+
+  const otherHtml = s.other
+    ? `<input class="other-input" placeholder="${s.other}" value="${otherVals[s.id]||''}" oninput="handleOther('${s.id}',this.value,${s.multi})">`
+    : '';
+
+  document.getElementById('quiz-body').innerHTML = `
+    <p class="step-eyebrow">Question ${currentStep+1} of ${STEPS.length}</p>
+    <h2 class="step-title">${s.q}</h2>
+    <p class="step-hint">${s.hint}${s.multi?' &mdash; select all that apply':''}</p>
+    ${s.multi ? '<div class="multi-note">✓ Select all that apply</div>' : ''}
+    <div class="chips">${chipsHtml}</div>
+    ${otherHtml}
+  `;
+
+  document.getElementById('back-btn').style.display = currentStep > 0 ? 'inline-flex' : 'none';
+  updateNextBtn();
+}
+
+function pickChip(id, val, multi) {
+  if(multi) {
+    if(!answers[id]) answers[id] = [];
+    const i = answers[id].indexOf(val);
+    if(i > -1) answers[id].splice(i,1); else answers[id].push(val);
+  } else {
+    answers[id] = val;
+  }
+  document.querySelectorAll('.chip').forEach(c => {
+    const v = c.textContent.trim();
+    const isSel = multi ? (answers[id]||[]).includes(v) : answers[id]===v;
+    c.classList.toggle('sel', isSel);
+  });
+  updateNextBtn();
+}
+
+function handleOther(id, val, multi) {
+  otherVals[id] = val;
+  if(val.trim()) {
+    if(multi) { if(!answers[id]) answers[id]=[]; if(!answers[id].includes('__o__')) answers[id].push('__o__'); }
+    else answers[id]='__o__';
+  } else {
+    if(multi && answers[id]) answers[id]=answers[id].filter(v=>v!=='__o__');
+    else if(!multi && answers[id]==='__o__') answers[id]=null;
+  }
+  updateNextBtn();
+}
+
+function resolveAns(id, multi) {
+  const raw = answers[id];
+  if(!raw) return multi?[]:'';
+  if(multi) return raw.map(v=>v==='__o__'?(otherVals[id]||''):v).filter(Boolean);
+  return raw==='__o__'?(otherVals[id]||''):raw;
+}
+
+function canProceed() {
+  const s = STEPS[currentStep];
+  const v = answers[s.id];
+  return s.multi ? (v && v.length > 0) : !!v;
+}
+
+function updateNextBtn() {
+  const btn = document.getElementById('next-btn');
+  btn.disabled = !canProceed();
+  btn.textContent = currentStep === STEPS.length-1 ? 'Generate my plan ✨' : 'Continue →';
+}
+
+function goNext() {
+  if(!canProceed()) return;
+  if(currentStep < STEPS.length-1) { currentStep++; renderStep(); }
+  else generate();
+}
+
+function goBack() {
+  if(currentStep > 0) { currentStep--; renderStep(); }
+}
+
+let genStepIdx = 0;
+let genInterval = null;
+
+function animateGenSteps() {
+  genStepIdx = 0;
+  document.querySelectorAll('.gen-step').forEach(el => { el.classList.remove('done','active'); });
+  document.getElementById('gs-0').classList.add('active');
+  genInterval = setInterval(() => {
+    document.getElementById('gs-'+genStepIdx)?.classList.remove('active');
+    document.getElementById('gs-'+genStepIdx)?.classList.add('done');
+    genStepIdx++;
+    if(genStepIdx < 4) document.getElementById('gs-'+genStepIdx)?.classList.add('active');
+    else clearInterval(genInterval);
+  }, 1800);
+}
+
+async function generate() {
+  showScreen('generating');
+  animateGenSteps();
+
+  const profile = STEPS.map(s => {
+    const v = resolveAns(s.id, s.multi);
+    return `${s.q}: ${Array.isArray(v) ? v.join(', ') : v}`;
+  }).join('\n');
+
+  const prompt = `You are an expert digital product strategist helping women and moms create profitable low-ticket digital products. Based on this profile, build a complete product using the PERC Method and 6-Pillar Framework.
+
+PROFILE:
+${profile}
+
+Respond ONLY in raw JSON, no markdown, no backticks:
+{
+  "productName": "Compelling specific product name",
+  "tagline": "One punchy transformation-focused sentence",
+  "pricePoint": "Specific price from their chosen range",
+  "targetBuyer": "Specific 1-sentence description of ideal buyer",
+  "transformation": "This product helps [who] go from [pain] to [result] without [obstacle]",
+  "quickWin": "What result they get in the first 15-60 minutes",
+  "pillars": [
+    {
+      "number": 1,
+      "name": "Pillar name",
+      "focus": "What this pillar covers and why it matters",
+      "quickWinAction": "The small immediate action they take",
+      "whyItWorks": "The psychology or science behind this",
+      "percPlan": "Simple 2-sentence plan",
+      "percEliminate": "What obstacle this removes",
+      "percReplace": "What smarter system replaces it",
+      "percCreate": "What they build or launch from this pillar",
+      "resources": ["Template or tool 1", "Template or tool 2", "Template or tool 3"],
+      "realExample": "A short relatable story or use case (2-3 sentences)"
+    }
+  ],
+  "upsell": {
+    "price": "$47–$97",
+    "name": "Upsell product name",
+    "type": "Product type",
+    "description": "2-3 sentences on what it includes and why it is an easy yes"
+  },
+  "membership": {
+    "price": "$17–$27/month",
+    "name": "Membership name",
+    "type": "Ongoing value type",
+    "description": "2-3 sentences on what members get and why they stay"
+  },
+  "sellingPoint": "The one thing that makes this product stand out"
+}
+
+Make ALL 6 pillars. Make everything specific to her niche, audience, and pain points. Speak to the overwhelmed, time-poor woman who wants results fast.`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:2500,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data = await res.json();
+    const text = (data.content?.[0]?.text||'').replace(/```json|```/g,'').trim();
+    resultData = JSON.parse(text);
+    clearInterval(genInterval);
+    renderResult(resultData);
+  } catch(e) {
+    clearInterval(genInterval);
+    alert('Something went wrong. Please try again.');
+    showScreen('quiz');
+  }
+}
+
+function renderResult(r) {
+  const pillarsHtml = (r.pillars||[]).map((p,i) => `
+    <div class="pillar-item">
+      <div class="pillar-head" onclick="togglePillar(${i})">
+        <div class="pillar-num">${p.number}</div>
+        <div class="pillar-name">${p.name}</div>
+        <span class="pillar-chevron" id="pchev-${i}">▾</span>
+      </div>
+      <div class="pillar-body" id="pbody-${i}">
+        <div class="quick-win-box">
+          <div class="qw-lbl">Quick win action</div>
+          <div class="qw-text">${p.quickWinAction}</div>
+        </div>
+        <div class="perc-grid">
+          <div class="perc-cell"><div class="perc-letter">P</div><div class="perc-lbl">Plan</div><div class="perc-text">${p.percPlan}</div></div>
+          <div class="perc-cell"><div class="perc-letter">E</div><div class="perc-lbl">Eliminate</div><div class="perc-text">${p.percEliminate}</div></div>
+          <div class="perc-cell"><div class="perc-letter">R</div><div class="perc-lbl">Replace</div><div class="perc-text">${p.percReplace}</div></div>
+          <div class="perc-cell"><div class="perc-letter">C</div><div class="perc-lbl">Create</div><div class="perc-text">${p.percCreate}</div></div>
+        </div>
+        <div class="pillar-section-label">Why it works</div>
+        <div class="pillar-body-text">${p.whyItWorks}</div>
+        <div class="pillar-section-label" style="margin-top:10px">Resources included</div>
+        ${(p.resources||[]).map(r=>`<div class="resource-row"><div class="resource-dot"></div>${r}</div>`).join('')}
+        <div class="pillar-section-label" style="margin-top:10px">Real-life example</div>
+        <div class="pillar-body-text" style="font-style:italic">${p.realExample}</div>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('result-body').innerHTML = `
+    <div class="r-hero">
+      <div class="r-badge">Your product plan</div>
+      <h1 class="r-name">${r.productName}</h1>
+      <p class="r-tagline">${r.tagline}</p>
+      <span class="r-price-badge">${r.pricePoint}</span>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Your transformation statement</div>
+      <div class="transform-statement">"${r.transformation}"</div>
+      <div class="two-col">
+        <div class="mini-card">
+          <div class="mini-label">Target buyer</div>
+          <div class="mini-text">${r.targetBuyer}</div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-label">First quick win</div>
+          <div class="mini-text">${r.quickWin}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Your 6-pillar PERC framework</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Tap each pillar to expand</p>
+      ${pillarsHtml}
+    </div>
+
+    <div class="card">
+      <div class="card-label">Your offer stack</div>
+      <div class="offer-grid">
+        <div class="offer-card">
+          <div class="offer-type">Upsell</div>
+          <div class="offer-price">${r.upsell?.price}</div>
+          <div class="offer-name">${r.upsell?.name}</div>
+          <div class="offer-desc">${r.upsell?.description}</div>
+        </div>
+        <div class="offer-card">
+          <div class="offer-type">Monthly membership</div>
+          <div class="offer-price">${r.membership?.price}</div>
+          <div class="offer-name">${r.membership?.name}</div>
+          <div class="offer-desc">${r.membership?.description}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="standout-card">
+      <div class="standout-label">What makes this stand out</div>
+      <div class="standout-text">"${r.sellingPoint}"</div>
+    </div>
+
+    <div class="action-row">
+      <button class="btn-dark" onclick="downloadSummary()">⬇ Download my product plan</button>
+      <button class="btn-secondary" onclick="restart()">↺ Start over with a new idea</button>
+    </div>
+  `;
+
+  showScreen('result');
+  document.getElementById('progress-fill').style.width = '100%';
+  document.getElementById('progress-label').textContent = 'Done!';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function togglePillar(i) {
+  const body = document.getElementById('pbody-'+i);
+  const chev = document.getElementById('pchev-'+i);
+  const open = body.classList.toggle('open');
+  if(chev) chev.classList.toggle('open', open);
+}
+
+function downloadSummary() {
+  if(!resultData) return;
+  const r = resultData;
+  let txt = 'PERC PRODUCT BUILDER — YOUR COMPLETE PRODUCT PLAN\n';
+  txt += '='.repeat(50)+'\n\n';
+  txt += `PRODUCT: ${r.productName}\n`;
+  txt += `TAGLINE: ${r.tagline}\n`;
+  txt += `PRICE: ${r.pricePoint}\n`;
+  txt += `BUYER: ${r.targetBuyer}\n\n`;
+  txt += `TRANSFORMATION\n${'-'.repeat(30)}\n${r.transformation}\n\n`;
+  txt += `QUICK WIN: ${r.quickWin}\n\n`;
+  txt += `6-PILLAR PERC FRAMEWORK\n${'='.repeat(30)}\n\n`;
+  (r.pillars||[]).forEach(p => {
+    txt += `PILLAR ${p.number}: ${p.name.toUpperCase()}\n${'-'.repeat(30)}\n`;
+    txt += `Focus: ${p.focus}\n`;
+    txt += `Quick win action: ${p.quickWinAction}\n`;
+    txt += `P — Plan: ${p.percPlan}\n`;
+    txt += `E — Eliminate: ${p.percEliminate}\n`;
+    txt += `R — Replace: ${p.percReplace}\n`;
+    txt += `C — Create: ${p.percCreate}\n`;
+    txt += `Why it works: ${p.whyItWorks}\n`;
+    txt += `Resources: ${(p.resources||[]).join(', ')}\n`;
+    txt += `Example: ${p.realExample}\n\n`;
+  });
+  txt += `OFFER STACK\n${'='.repeat(30)}\n\n`;
+  txt += `UPSELL (${r.upsell?.price}): ${r.upsell?.name}\n${r.upsell?.description}\n\n`;
+  txt += `MEMBERSHIP (${r.membership?.price}): ${r.membership?.name}\n${r.membership?.description}\n\n`;
+  txt += `WHAT MAKES IT STAND OUT\n${'-'.repeat(30)}\n${r.sellingPoint}\n`;
+
+  const blob = new Blob([txt], {type:'text/plain'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'my-perc-product-plan.txt';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function restart() {
+  answers={}; otherVals={}; resultData=null; currentStep=0;
+  document.getElementById('progress-fill').style.width='0%';
+  document.getElementById('progress-wrap').style.display='none';
+  showScreen('welcome');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
